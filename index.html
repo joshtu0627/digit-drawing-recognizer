@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>digit-drawing-recognizer</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #title{
+            font-size: 30px;
+            text-align: center;
+            margin: 30px auto;
+        }
+        #drawing{
+            background-color: rgb(0, 0, 0);
+            display: block;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        #box{
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            /* background-color: aqua; */
+            align-items: center;
+        }
+        button{
+            width: 60px;
+            height: 40px;
+            margin: 30px;
+            font-size: 18px;
+        }
+        #result{
+            margin-top: 30px;
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload='init()'>
+    <p id="title">手寫數字辨識器</p>
+    <canvas id="drawing" width="400px" height="400px"></canvas><br>
+    <div id="box">
+        <button onclick="clearCvs()">清除</button><br>
+        <button onclick="submit()">提交</button>
+    </div>
+    <p id="result">預測結果:</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
