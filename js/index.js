@@ -180,16 +180,27 @@ body.addEventListener('mousemove',function(e){
 body.addEventListener('keyup',function(e){
     if(e.key=='e'||e.key=='E'){
         tab.lis[1].click();
-        penType=1;
-        ctx.strokeStyle="rgba(0,0,0,1)";
     }
 })
 
-// 切換回畫筆
+
+// 畫筆功能
 body.addEventListener('keyup',function(e){
     if(e.key=='p'||e.key=='P'){
         tab.lis[0].click();
-        penType=0;
-        ctx.strokeStyle="rgba(255,255,255,1)";
     }
 })
+
+
+function changeType(type){
+    switch(type){
+        case 0:{
+            penType=0;
+            ctx.strokeStyle="rgba(255,255,255,1)";
+        }
+        case 1:{
+            penType=1;
+            ctx.strokeStyle="rgba(0,0,0,1)";
+        }
+    }
+}

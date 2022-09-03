@@ -33,6 +33,7 @@ class Tab{
     toggleTab(that){
         that.clearClass();
         console.log(this.index);
+        changeType(this.index);
         this.className='active';
         that.iconBoxs[this.index].classList.add('icon_active');
         that.sections[this.index].className='conactive';
