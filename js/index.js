@@ -197,10 +197,12 @@ function changeType(type){
         case 0:{
             penType=0;
             ctx.strokeStyle="rgba(255,255,255,1)";
+            break;
         }
         case 1:{
             penType=1;
             ctx.strokeStyle="rgba(0,0,0,1)";
+            break;
         }
     }
 }

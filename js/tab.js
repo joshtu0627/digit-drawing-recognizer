@@ -34,6 +34,7 @@ class Tab{
         that.clearClass();
         console.log(this.index);
         changeType(this.index);
+        console.log('pen type:'+penType);
         this.className='active';
         that.iconBoxs[this.index].classList.add('icon_active');
         that.sections[this.index].className='conactive';
