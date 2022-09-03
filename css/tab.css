@@ -1,0 +1,99 @@
+/* .tabsbox{
+    border: 1px solid gray;
+} */
+nav{
+    width: 50px;
+    height: 400px;
+    
+    background-color: rgb(171, 171, 171);
+}
+li{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33px;
+    height: 33px;
+    /* background-color: gray; */
+}
+.icon{
+    width: 25px;
+    height: 25px;
+}
+.icon_active{
+    background-color: rgb(167, 199, 208);
+}
+nav li{
+    float: left;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    /* border: 1px solid gray; */
+    position: relative;
+}
+/* .tabscon{
+    width: 200px;
+} */
+.close{
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    line-height: 10px;
+}
+.active{
+    border-right: 0;
+}
+.tabscon section{
+    display: none;
+    
+    background-color: rgb(171, 171, 171);
+}
+.tabscon .conactive{
+    position: absolute;
+    box-sizing: border-box;
+    padding: 10px;
+    right: 5px;
+    top: 5px;
+    display: block;
+    /* background-color: green; */
+    width: 140px;
+    height: 390px;
+}
+.type_list{
+    position: relative;
+    height: 40px;
+    display: flex;
+    background-color: rgb(154, 154, 154);
+}
+.type_list span{
+    position: absolute;
+    font-size: 12px;
+    right: 3px;
+    bottom: 0px;
+    line-height: 23px;
+    color: white;
+}
+.pen_type{
+    position: absolute;
+    left: 35px;
+    width: 30px;
+    height: 30px;
+}
+input{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);;
+    width: 80px;
+    height: 30px;
+    outline: none;
+}
+input:focus{
+    border: 2px solid rgb(74, 93, 216);
+}

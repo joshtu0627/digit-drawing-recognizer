@@ -5,52 +5,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>digit-drawing-recognizer</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        #title{
-            font-size: 30px;
-            text-align: center;
-            margin: 30px auto;
-        }
-        #drawing{
-            background-color: rgb(0, 0, 0);
-            display: block;
-            margin: 0 auto;
-            margin-top: 10px;
-        }
-        #box{
-            height: 70px;
-            display: flex;
-            justify-content: center;
-            /* background-color: aqua; */
-            align-items: center;
-        }
-        button{
-            width: 60px;
-            height: 40px;
-            margin: 30px;
-            font-size: 18px;
-        }
-        #result{
-            margin-top: 30px;
-            font-size: 25px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/tab.css">
 </head>
 <body onload='init()'>
+    <img src="imgs/pen.png" alt="" id="pen">
     <p id="title">手寫數字辨識器</p>
-    <canvas id="drawing" width="400px" height="400px"></canvas><br>
-    <div id="box">
+    <div id="box1">
+        <div id="toolbox">
+            <div class="tabsbox" id="tab">
+                <nav class="firstnav">
+                    <ul class="nav_ul">
+                        <li class="active">
+                            <div class="icon_box icon_active">
+                                <img src="imgs/pen_icon.png" alt="" class="icon">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon_box">
+                                <img src="imgs/eraser_icon.png" alt="" class="icon">
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="tabscon">
+                    <section class="conactive">
+                        <ul >
+                            <li class="type_list">
+                                <img src="imgs/pen_1.png" alt="" class="pen_type">
+                                <span>圓筆頭</span>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <ul>
+                            <li class="type_list">
+                                <img src="imgs/pen_1.png" alt="" class="pen_type">
+                                <span>硬邊</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <canvas id="drawing" width="400px" height="400px"></canvas><br>
+        <div id="hint"><b>快捷鍵: </b><br>
+            <div>
+                P, p<br>
+                [<br>
+                ]<br>
+                E, e<br>
+            </div>
+            <div>
+                畫筆<br>
+                縮小筆頭<br>
+                放大筆頭 <br>
+                橡皮擦 <br>
+            </div>
+        </div>
+    </div>
+    <div id="box2">
         <button onclick="clearCvs()">清除</button><br>
         <button onclick="submit()">提交</button>
     </div>
     <p id="result">預測結果:</p>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/tab.js"></script>
 </body>
 </html>

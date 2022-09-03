@@ -39,6 +39,12 @@ function predict(imgElement){
     document.querySelector('#result').innerHTML='預測結果: '+predNum;
 }
 
+
+let state=0; // 0:筆刷
+let penType=0 // 0:筆 1:橡皮擦
+
+
+let body=document.querySelector('body');
 let canvas=document.querySelector('#drawing')
 let canvasw=canvas.width;
 let canvash=canvas.height;
@@ -66,33 +72,56 @@ canvas.addEventListener('mousemove',function(e){
         
         var canvasPos;
         canvasPos=getMousePos(e)
-        console.log(canvasPos[0]);
-        console.log(canvasPos[1]);
+        // console.log(canvasPos[0]);
+        // console.log(canvasPos[1]);
 
-        ctx.lineTo(canvasPos[0],canvasPos[1]);
-        ctx.stroke();
+        if(state==0){
+            ctx.lineTo(canvasPos[0],canvasPos[1]);
+            ctx.stroke();
+        }
     }
 })
 canvas.addEventListener('mousedown',function(e){
-    // console.log('start');
+    console.log('start');
     var canvasPos;
     canvasPos=getMousePos(e)
 
-    ctx.lineTo(canvasPos[0],canvasPos[1]);
+    if(state==0){
+        ctx.lineTo(canvasPos[0],canvasPos[1]);
 
-    console.log('begin');
-    hasClicked=true;
-    ctx.beginPath();
-    ctx.moveTo(canvasPos[0],canvasPos[1]);
-    
+        console.log('begin');
+        hasClicked=true;
+        ctx.beginPath();
+        ctx.moveTo(canvasPos[0],canvasPos[1]);
+    }
 })
-canvas.addEventListener('mouseup',function(e){
+body.addEventListener('mouseup',function(e){
     hasClicked=false;
-    ctx.closePath();
+    if(state==0){
+        ctx.closePath();
+    }
 })
 canvas.addEventListener('mouseout',function(e){
-    hasClicked=false;
-    ctx.closePath();
+    if(state==0){
+        if(penType==0){
+            pen.style.display='none';
+            hasClicked=false;
+            ctx.closePath();
+        }
+        else if(penType==1){
+            pen.style.display='none';
+        }
+    }
+})
+canvas.addEventListener('mousemove',function(e){
+    if(state==0){
+        if(penType==0){
+            pen.style.display='block';
+        }
+        else if(penType==1){
+            pen.style.display='block';
+        }
+    }
 })
 
 function clearCvs(){
@@ -111,3 +140,56 @@ function submit(){
         predict(img);
     }
 }
+
+// 控制筆頭粗細
+let pen=document.querySelector('#pen');
+body.addEventListener('keyup',function(e){
+    console.log(e.key);
+    if(e.key=='['){
+        if(ctx.lineWidth>5){
+            ctx.lineWidth-=2;
+            pen.style.width=(pen.offsetWidth-2)+'px';
+            pen.style.height=(pen.offsetHeight-2)+'px';
+            console.log(pen.style.width);
+            console.log(pen.style.height);
+        }
+    }
+    else if(e.key==']'){
+        if(ctx.lineWidth<70){
+            ctx.lineWidth+=2;
+            pen.style.width=(pen.offsetWidth+2)+'px';
+            pen.style.height=(pen.offsetHeight+2)+'px';
+            console.log(pen.style.width);
+            console.log(pen.style.height);
+        }
+    }
+})
+
+// 調整筆頭圖案粗細
+body.addEventListener('mousemove',function(e){
+    var x=e.pageX;
+    var y=e.pageY;
+    pen.style.left=(x)-(ctx.lineWidth/2)+'px';
+    pen.style.top=(y)-(ctx.lineWidth/2)+'px';
+})
+
+
+
+
+// 橡皮擦功能
+body.addEventListener('keyup',function(e){
+    if(e.key=='e'||e.key=='E'){
+        tab.lis[1].click();
+        penType=1;
+        ctx.strokeStyle="rgba(0,0,0,1)";
+    }
+})
+
+// 切換回畫筆
+body.addEventListener('keyup',function(e){
+    if(e.key=='p'||e.key=='P'){
+        tab.lis[0].click();
+        penType=0;
+        ctx.strokeStyle="rgba(255,255,255,1)";
+    }
+})
